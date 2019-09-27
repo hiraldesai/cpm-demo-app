@@ -39,7 +39,7 @@ namespace CPM_Dotnet_Core
 
             try
             {
-                var phoneResult = await cpmApi.GetPhoneContacts("Jean-François", "Desai", "+13105314066");
+                var phoneResult = await cpmApi.GetPhoneContacts("+13105314066", "Jean-François", "Desai");
             }
             catch (Exception e)
             {
