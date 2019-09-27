@@ -67,7 +67,7 @@ namespace CPM_Dotnet_Core
 
             using (var httpClient = new HttpClient(new AuthenticatedHttpClientHandler(aadConnection)))
             {
-                httpClient.BaseAddress = new Uri("https://api.cpm.account.microsoft.com");
+                httpClient.BaseAddress = new Uri(config["CPMUri"]);
 
                 httpClient.DefaultRequestHeaders.Add("x-ms-filter-first-name", "Jean-François");
                 httpClient.DefaultRequestHeaders.Add("x-ms-filter-last-name", "Desai");
@@ -75,13 +75,14 @@ namespace CPM_Dotnet_Core
 
                 try
                 {
-                    var response = await httpClient.GetAsync($@"/api/PhoneContacts");
+                    var response = await httpClient.GetAsync("/api/PhoneContacts");
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error getting email contact: {e.Message}");
+                    Console.WriteLine($"Error getting email contact even with a standard http client: {e.Message}");
                 }
             }
+
             Console.WriteLine("Done");
         }
     }
